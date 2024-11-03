@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentence Processor</title>
+    <script src="https://unpkg.com/htmx.org@2.0.3"></script>
+    <style>
+        /* Center the content */
+        body, html {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5dc;
+        }
+
+        /* Center the form container */
+        .container {
+            text-align: center;
+            padding: 20px;
+            border: 2px solid #333;
+            border-radius: 8px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            color: #333;
+        }
+
+        /* Input styling to mimic Scrabble tiles */
+        input[type="text"] {
+            font-size: 18px;
+            padding: 10px;
+            border: 2px solid #333;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
+            background-color: #f7e8c6;
+            font-family: "Courier New", Courier, monospace;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #333;
+            color: #f7e8c6;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: "Courier New", Courier, monospace;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        /* Response container styling */
+        #response {
+            margin-top: 20px;
+            font-size: 28px;
+            color: #333;
+            font-family: "Courier New", Courier, monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Scrabble Babble</h1>
+        <h3>Enter a Sentence</h3>
+        <form hx-post="/process" hx-target="#response" hx-swap="innerHTML">
+            <input type="text" name="sentence" placeholder="Type a sentence..." required>
+            <button type="submit">Process</button>
+            <span id="spinner" class="htmx-indicator">⏳</span>
+        </form>
+        <div id="response"></div>
+    </div>
+</body>
+</html>
