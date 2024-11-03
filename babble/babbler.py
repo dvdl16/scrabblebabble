@@ -58,11 +58,7 @@ class Babbler:
                 # Return the same word if no alternatives are available
                 choice = word
             else:
-                # Make sure to not return the same word if others are available
-                while (
-                    choice := random.choice(same_length_available_words).lower()
-                ) == word.lower():
-                    pass
+                choice = random.choice(same_length_available_words).lower()
 
             new_sentence_list.append(choice)
 
