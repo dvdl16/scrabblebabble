@@ -51,7 +51,7 @@ class Babbler:
             same_length_available_words = [
                 w
                 for w in self.available_words[starting_letter]
-                if len(w) == word_length
+                if len(w) == word_length and w != word
             ]
 
             if len(same_length_available_words) == 0:
