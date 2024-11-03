@@ -1,10 +1,17 @@
 import random
 from typing import Dict
 
+from babble.wordlist_providers import (
+    HTTPFileWordListProvider,
+    LocalFileWordlistProvider,
+    WordlistProvider,
+)
+
 
 class Babbler:
-    available_words: str
+    available_words: Dict
     index_map: Dict
+    wordlist_provider: WordlistProvider
 
     def __init__(self) -> None:
         self.read_word_list()
@@ -13,18 +20,15 @@ class Babbler:
         """
         Read text file with list of words into memory
         """
-        with open(
-            "/home/dirk/Projects/Other/scrabblebabble/words_alpha.txt", "r"
-        ) as file:
-            self.available_words = file.read().splitlines()
+        # First try to get original word list, else fallback to local copy
+        try:
+            self.wordlist_provider = HTTPFileWordListProvider(
+                url="https://raw.githubusercontent.com/dwyl/english-words/refs/heads/master/words_alpha.txt"
+            )
+        except Exception:
+            self.wordlist_provider = LocalFileWordlistProvider()
 
-            incumbent_letter = self.available_words[0][0]
-            self.index_map = {incumbent_letter: 0}
-            for index, word in enumerate(self.available_words):
-                first_letter_of_word = word[0]
-                if first_letter_of_word != incumbent_letter:
-                    self.index_map[first_letter_of_word] = index
-                    incumbent_letter = first_letter_of_word
+        self.available_words = self.wordlist_provider.available_words
 
     def get_new_words(self, sentence: str) -> str:
         """
@@ -38,24 +42,27 @@ class Babbler:
         for word in words:
             starting_letter = word[0].lower()
             word_length = len(word)
-            index_start = self.index_map[starting_letter]
-            index_end = self.index_map[next_alphabet_letter(starting_letter)]
 
+            # Get subset of possible choices, based on word length
             same_length_available_words = [
                 w
-                for w in self.available_words[index_start:index_end]
+                for w in self.available_words[starting_letter]
                 if len(w) == word_length
             ]
 
-            new_sentence_list.append(random.choice(same_length_available_words))
+            if len(same_length_available_words) == 0:
+                # Return the same word if no alternatives are available
+                choice = word
+            else:
+                # Make sure to not return the same word if others are available
+                while (
+                    choice := random.choice(same_length_available_words).lower()
+                ) == word.lower():
+                    pass
 
-            # TODO: handle z
+            new_sentence_list.append(choice)
 
         print(f"Received {sentence}")
         print(f"Returned {' '.join(new_sentence_list)}")
 
         return " ".join(new_sentence_list)
-
-
-def next_alphabet_letter(s):
-    return chr((ord(s.lower()) + 1 - 97) % 26 + 97)
