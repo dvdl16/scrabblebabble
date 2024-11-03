@@ -1,5 +1,6 @@
 import random
 from typing import Dict
+import logging
 
 from babble.wordlist_providers import (
     HTTPFileWordListProvider,
@@ -26,6 +27,9 @@ class Babbler:
                 url="https://raw.githubusercontent.com/dwyl/english-words/refs/heads/master/words_alpha.txt"
             )
         except Exception:
+            logging.warning(
+                "Failed to retrieve word list via web. Falling back to local copy"
+            )
             self.wordlist_provider = LocalFileWordlistProvider()
 
         self.available_words = self.wordlist_provider.available_words
@@ -62,7 +66,7 @@ class Babbler:
 
             new_sentence_list.append(choice)
 
-        print(f"Received {sentence}")
-        print(f"Returned {' '.join(new_sentence_list)}")
+        logging.info(f"Received {sentence}")
+        logging.info(f"Returned {' '.join(new_sentence_list)}")
 
         return " ".join(new_sentence_list)
