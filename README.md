@@ -3,6 +3,19 @@
 [![Unit Tests](https://github.com/dvdl16/scrabblebabble/actions/workflows/python-unittest.yml/badge.svg)](https://github.com/dvdl16/scrabblebabble/actions/workflows/python-unittest.yml)
 [![Linting](https://github.com/dvdl16/scrabblebabble/actions/workflows/linters.yml/badge.svg)](https://github.com/dvdl16/scrabblebabble/actions/workflows/linters.yml)
 
+## How do I run this?
+
+### Using the shell
+
+```shell
+uv run main.py hello world
+```
+expect an answer like:
+```shell
+homed walty
+```
+
+
 ## Development
 
 `uv ......`
