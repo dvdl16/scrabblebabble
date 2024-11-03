@@ -145,19 +145,22 @@ name = "scrabblebabble"
 version = "0.1.0"
 source = { virtual = "." }
 
-[package.dev-dependencies]
+[package.optional-dependencies]
 dev = [
     { name = "pre-commit" },
+]
+linting = [
     { name = "ruff" },
 ]
 
 [package.metadata]
+requires-dist = [
+    { name = "pre-commit", marker = "extra == 'dev'", specifier = ">=4.0.1" },
+    { name = "ruff", marker = "extra == 'linting'", specifier = ">=0.7.2" },
+]
 
 [package.metadata.requires-dev]
-dev = [
-    { name = "pre-commit", specifier = ">=4.0.1" },
-    { name = "ruff", specifier = ">=0.7.2" },
-]
+dev = []
 
 [[package]]
 name = "virtualenv"

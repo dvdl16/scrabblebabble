@@ -14,8 +14,10 @@ Changelog = "https://github.com/dvdl16/scrabblebabble/releases"
 Issues = "https://github.com/dvdl16/scrabblebabble/issues"
 CI = "https://github.com/dvdl16/scrabblebabble/actions"
 
-[dependency-groups]
+[project.optional-dependencies]
 dev = [
     "pre-commit>=4.0.1",
+]
+linting = [
     "ruff>=0.7.2",
 ]
