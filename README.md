@@ -104,6 +104,8 @@ python -m unittest
 
 *Stuff I ran out of time for, or just thought would be valuable to consider*:
 
+- I wanted to see what's the fuss regarding [htmx](https://htmx.org/), so I've tried it in this project. 
+  - *It's pretty neat*
 - Inconsistent Handling of Word Cases
     - Sometimes there may be unexpected lowercase results even if the input sentence contains capitalized words
 - Non-Thread-Safety
