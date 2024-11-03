@@ -34,6 +34,10 @@
             margin-bottom: 20px;
         }
 
+        h3 {
+            color: #333;
+        }
+
         /* Input styling to mimic Scrabble tiles */
         input[type="text"] {
             font-size: 18px;
@@ -73,7 +77,8 @@
 </head>
 <body>
     <div class="container">
-        <h1>Enter a Sentence</h1>
+        <h1>Scrabble Babble</h1>
+        <h3>Enter a Sentence</h3>
         <form hx-post="/process" hx-target="#response" hx-swap="innerHTML">
             <input type="text" name="sentence" placeholder="Type a sentence..." required>
             <button type="submit">Process</button>
