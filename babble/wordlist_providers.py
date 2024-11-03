@@ -8,6 +8,8 @@ import requests
 
 class WordlistProvider:
     available_words: Dict
+    # Key is the starting letter, Value is the subset of words starting with this letter
+    # e.g. {"a": ["apple", "aardvark"], "z": ["zero", "Zurich"]}
 
     def __init__(self) -> None:
         # Use list as default factory for new keys
