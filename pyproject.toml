@@ -7,7 +7,6 @@ authors = [{name = "Dirk van der Laarse"}]
 license = {text = "Apache-2.0"}
 requires-python = ">=3.10"
 dependencies = [
-    "click>=8.1.7",
     "requests>=2.32.3",
 ]
 
