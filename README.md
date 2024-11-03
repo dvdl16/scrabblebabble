@@ -22,7 +22,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 # Step 3: Clone the repository
 git clone https://github.com/dvdl16/scrabblebabble.git
 
-# Step 4: Run the program
+# Step 4: Run the program, with your sentence/words as arguments
 uv run main.py hello world
 ```
 
@@ -36,7 +36,7 @@ powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | ie
 # Step 3: Clone the repository
 git clone https://github.com/dvdl16/scrabblebabble.git
 
-# Step 4: un the program
+# Step 4: Run the program, with your sentence/words as arguments
 uv run main.py hello world
 ```
 
@@ -45,6 +45,17 @@ expect an answer like:
 homed walty
 ```
 
+### Using the local Web UI
+
+Follow the same steps as *Using the shell* above, but run 
+```shell
+uv run web-ui.py
+```
+instead.
+
+Open your browser at [http://127.0.0.1:5000/](http://127.0.0.1:5000/) to see:
+
+![web ui screenshot](docs/image.png)
 
 ## Development
 
