@@ -1,0 +1,21 @@
+[project]
+name = "scrabblebabble"
+version = "0.1.0"
+description = "A tool to train for Scrabble competitions"
+readme = "README.md"
+authors = [{name = "Dirk van der Laarse"}]
+license = {text = "Apache-2.0"}
+requires-python = ">=3.10"
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/dvdl16/scrabblebabble"
+Changelog = "https://github.com/dvdl16/scrabblebabble/releases"
+Issues = "https://github.com/dvdl16/scrabblebabble/issues"
+CI = "https://github.com/dvdl16/scrabblebabble/actions"
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.0.1",
+    "ruff>=0.7.2",
+]
